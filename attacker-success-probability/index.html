@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>Attacker success probability of blockchain</title>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+<!-- NVD3 -->
+<link href="http://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.css" rel="stylesheet" type="text/css">
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="http://cdn.rawgit.com/novus/nvd3/v1.8.1/build/nv.d3.min.js" charset="utf-8"></script>
+
+<style>
+	text {
+		font: 12px sans-serif;
+	}
+
+	svg {
+		display: block;
+	}
+	
+	#chart1, #chart2, svg {
+		height: 300px;
+		min-width: 200px;
+		min-height: 100px;
+	}
+	
+	#footer {
+		background-color: #f5f5f5;
+		height: 60px;
+	}
+	
+	.credit {
+		margin: 20px 0px;
+	}
+</style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="page-header">
+			<h1>Attacker success probability of blockchain</h1>
+		</div>
+
+		<h2>Introduction</h2>
+		This caltulation is based on Satoshi Nakamoto's whitepaper(<a href="https://bitcoin.org/bitcoin.pdf">link</a>).
+		
+		<h2>Calculate</h2>
+
+		<div class="row">
+			<div class="col-md-4">
+				<h3>Usage</h3>
+				e.g.)
+				<ol>
+					<li>input 'q' as 0.1<br>
+					<li>input 'n' as 10<br>
+					<li>then calculated p(n) is displayed as '0.0000012414021747979564'.
+				</ol>
+
+			</div>
+			<div class="col-md-4">
+				<h3>Input</h3>
+				<div class="form-group">
+					<label>q: probability the attacker finds the next block.</label>
+					<input type="text" class="form-control" id="q" placeholder="Input ratio from 0 to 1.">
+				</div>
+				<div class="form-group">
+					<label>n: number of blocks the attacker will catch up from behind.</label>
+					<input type="text" class="form-control" id="n" placeholder="Input number more than 0.">
+				</div>
+			</div>
+			<div class="col-md-4">
+				<h3>Output</h3>
+				<div class="form-group">
+					<label>p(n): probability the attacker will ever catch up.</label>
+					<input type="text" class="form-control" id="pn" placeholder="p(n) is automatically calculated.">
+				</div>
+			</div>
+		</div>
+		
+		<h2>Chart</h2>
+		<h3>Probability the attacker will ever catch up.</h3>
+		<div id="chart1" class='with-transitions'>
+			<svg></svg>
+		</div>
+		
+		<h3>Number of blocks probability less than 0.1%.</h3>
+		<div id="chart2" class='with-transitions'>
+			<svg></svg>
+		</div>
+	</div>
+
+	<footer id="footer">
+		<div class="container">
+			<p class="muted credit"><a href="">GitHub</a></a>
+		</div>
+	</footer>
+
+	<script type="text/javascript" src="./probability.js"></script>
+</body>
+</html>
